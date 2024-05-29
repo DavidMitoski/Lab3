@@ -1,0 +1,70 @@
+﻿@model Lab3.Models.Doctor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Doctor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoctorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+    </dl>
+</div>
+
+    @*<div>
+            <ul>
+                 @foreach(var p in Model.patients)
+                {
+                    <li>
+                     @Html.ActionLink(p.PatientName,"details/"+p.Id,"patients") |
+                     @Html.ActionLink("Delete Patient", "DeletePatient", new { doctorId = Model.Id, patientId = Model.Id })
+                    </li>
+                }
+
+            </ul>
+
+        
+    </div>*@
+
+<ul>
+    @foreach (var patient in Model.patients)
+    {
+        <li>
+            @Html.ActionLink(patient.PatientName, "details/" + patient.Id, "patients") | @Html.ActionLink("Delete Patient", "DeletePatient", new { doctorId = Model.Id, patientId = patient.Id })
+        </li>
+    }
+</ul>
+
+
+
+@Html.ActionLink("Add new patient", "AddPatient", new { id = Model.Id })
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
